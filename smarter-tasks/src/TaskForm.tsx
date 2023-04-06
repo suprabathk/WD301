@@ -51,27 +51,43 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
           className="flex flex-col gap-4 border my-2 border-slate-200 py-4 px-2 rounded-md shadow-md"
           onSubmit={this.addTask}
         >
-          <input
-            className="border border-slate-200 rounded-md"
-            required
-            type="text"
-            value={this.state.title}
-            onChange={this.titleChanged}
-          />
-          <input
-            className="border border-slate-200 rounded-md"
-            type="text"
-            value={this.state.description}
-            onChange={this.descriptionChanged}
-          />
-          <input
-            className="border border-slate-200 rounded-md"
-            required
-            type="date"
-            value={this.state.dueDate}
-            onChange={this.dueDateChanged}
-          />
-          <button className="border border-green-400 rounded-md" type="submit">
+          <div className="flex flex-col">
+            <label htmlFor="todotitle">Title:</label>
+            <input
+              id="todoTitle"
+              className="border border-slate-200 rounded-md"
+              required
+              type="text"
+              value={this.state.title}
+              onChange={this.titleChanged}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="todoDescription">Description:</label>
+            <input
+              id="todoDescription"
+              className="border border-slate-200 rounded-md"
+              type="text"
+              value={this.state.description}
+              onChange={this.descriptionChanged}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="todoDueDate">Due date:</label>
+            <input
+              id="todoDueDate"
+              className="border border-slate-200 rounded-md"
+              required
+              type="date"
+              value={this.state.dueDate}
+              onChange={this.dueDateChanged}
+            />
+          </div>
+          <button
+            id="addTaskButton"
+            className="border border-green-400 rounded-md"
+            type="submit"
+          >
             Add item
           </button>
         </form>
