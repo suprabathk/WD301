@@ -22,7 +22,7 @@ const TaskApp = (props: TaskAppProp) => {
     setTaskAppState({ tasks: [...taskAppState.tasks, task] });
   };
   return (
-    <div>
+    <div className="m-5 border-2 border-slate-200 p-5 rounded-md">
       <TaskForm addTask={addTask} />
       <TaskList tasks={taskAppState.tasks} />
     </div>
