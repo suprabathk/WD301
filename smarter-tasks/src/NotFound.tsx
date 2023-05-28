@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function NotFound() {
+  const navigate = useNavigate();
   return (
     <div className="flex items-center h-full text-gray-700">
       <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
@@ -16,9 +17,13 @@ export default function NotFound() {
             But don't worry, you can find plenty of other things on our
             homepage.
           </p>
-          <Link to="/" className="font-semibold text-blue-300">
+          <button
+            id="backToHomeButton"
+            onClick={() => navigate("/")}
+            className="font-semibold text-blue-300"
+          >
             Back to homepage
-          </Link>
+          </button>
         </div>
       </div>
     </div>
