@@ -18,9 +18,9 @@ const Header = () => {
             <span className="text-white text-lg font-bold">Task Manager</span>
           </div>
           <div className="flex items-center w-1/3 justify-end">
-            <Link to="/signin" className="ml-6 text-gray-300 hover:text-white">
+            {/* <Link to="/signin" className="ml-6 text-gray-300 hover:text-white">
               Signout
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

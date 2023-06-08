@@ -5,9 +5,11 @@ import Header from "./Header";
 import HomePage from "./HomePage";
 import TaskApp from "./TaskApp";
 import TaskDetailsPage from "./TaskDetailsPage";
-import Signin from "./Signin";
 import { ProtectedRoute } from "./ProtectedRoute";
 import NotFound from "./NotFound";
+import Signin from "./pages/signin";
+import Signup from "./pages/signup";
+import Dashboard from "./pages/dashboard";
 
 function App() {
   const location = useLocation();
@@ -27,8 +29,13 @@ function App() {
           path="/tasks/:id"
           element={<ProtectedRoute element={<TaskDetailsPage />} />}
         />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/notfound" element={<NotFound />} />
+        <Route
+          path="/dashboard"
+          element={<ProtectedRoute element={<Dashboard />} />}
+        />
         <Route path="*" element={<Navigate to={"/notfound"} />} />
       </Routes>
     </div>
