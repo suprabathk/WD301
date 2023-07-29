@@ -1,14 +1,24 @@
 import React, { useState } from "react";
 import { API_ENDPOINT } from "../../config/constants";
 import { useNavigate } from "react-router-dom";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { Link } from "react-router-dom";
+
+type Inputs = {
+  email: string;
+  password: string;
+};
 
 const SigninForm: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const { email, password } = data;
 
     try {
       const response = await fetch(`${API_ENDPOINT}/users/sign_in`, {
@@ -24,7 +34,6 @@ const SigninForm: React.FC = () => {
       }
       console.log("Sign-in successful");
 
-      // Dialogue: After successful signin, first we will save the token in localStorage
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("userData", JSON.stringify(data.user));
       navigate("/account");
@@ -34,17 +43,18 @@ const SigninForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label className="block text-gray-700 font-semibold mb-2">Email:</label>
         <input
           type="email"
-          name="email"
           id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          {...register("email", { required: true })}
           className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
         />
+        {errors.email && (
+          <span className="text-red-500">Email is required</span>
+        )}
       </div>
       <div>
         <label className="block text-gray-700 font-semibold mb-2">
@@ -52,19 +62,21 @@ const SigninForm: React.FC = () => {
         </label>
         <input
           type="password"
-          name="password"
           id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          {...register("password", { required: true })}
           className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
         />
+        {errors.password && (
+          <span className="text-red-500">Password is required</span>
+        )}
       </div>
       <button
         type="submit"
-        className="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4"
+        className="w-full mb-2 bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4"
       >
         Sign In
       </button>
+      <Link to={"/signup"} className="hover:text-blue-500 transition-all">Don't have an account? Sign up</Link>
     </form>
   );
 };
