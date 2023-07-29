@@ -13,7 +13,7 @@ type Inputs = {
 const NewMember = () => {
     const [isOpen, setIsOpen] = useState(false)
 
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(false)
 
     const dispatchMembers = useMembersDispatch();
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
@@ -33,7 +33,7 @@ const NewMember = () => {
         if (response.ok) {
             setIsOpen(false)
         } else {
-            setError(response.error as React.SetStateAction<null>)
+            setError(true)
         }
     };
 
@@ -41,6 +41,7 @@ const NewMember = () => {
         <>
             <button
                 type="button"
+                id='new-member-btn'
                 onClick={openModal}
                 className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
             >
@@ -79,8 +80,10 @@ const NewMember = () => {
                                     </Dialog.Title>
                                     <div className="mt-2">
                                         <form onSubmit={handleSubmit(onSubmit)}>
+                                            {error && <span>Failed to create member</span>}
                                             <input
                                                 type="text"
+                                                id='name'
                                                 placeholder='Enter member name...'
                                                 autoFocus
                                                 {...register('name', { required: true })}
@@ -90,6 +93,7 @@ const NewMember = () => {
                                             {errors.name && <span>Name is required</span>}
                                             <input
                                                 type="email"
+                                                id='email'
                                                 placeholder='Enter member email...'
                                                 autoFocus
                                                 {...register('email', { required: true })}
@@ -99,6 +103,7 @@ const NewMember = () => {
                                             {errors.email && <span>Email is required</span>}
                                             <input
                                                 type="password"
+                                                id='password'
                                                 placeholder='Enter password'
                                                 autoFocus
                                                 {...register('password', { required: true })}

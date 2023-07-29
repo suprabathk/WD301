@@ -15,7 +15,7 @@ const NewProject = () => {
     const [isOpen, setIsOpen] = useState(false)
 
     // Next, I'll add a new state to handle errors.
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(false)
 
     // Then I'll call the useProjectsDispatch function to get the dispatch function 
     // for projects 
@@ -30,18 +30,12 @@ const NewProject = () => {
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         const { name } = data
 
-        // Next, I'll call the addProject function with two arguments: 
-        //`dispatchProjects` and an object with `name` attribute. 
-        // As it's an async function, we will await for the response.
         const response = await addProject(dispatchProjects, { name })
 
-        // Then depending on response, I'll either close the modal...
         if (response.ok) {
             setIsOpen(false)
         } else {
-
-            // Or I'll set the error.
-            setError(response.error as React.SetStateAction<null>)
+            setError(true);
         }
     };
     return (
@@ -86,6 +80,7 @@ const NewProject = () => {
                                     </Dialog.Title>
                                     <div className="mt-2">
                                         <form onSubmit={handleSubmit(onSubmit)}>
+                                            {error && <span>Failed to create project</span>}
                                             <input
                                                 type="text"
                                                 placeholder='Enter project name...'
