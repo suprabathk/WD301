@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function NotFound() {
+export default function Notfound() {
     return (
         <div className="flex items-center h-full text-gray-200 justify-center">
             <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
