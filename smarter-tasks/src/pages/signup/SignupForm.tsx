@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { API_ENDPOINT } from "../../config/constants";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -56,6 +56,9 @@ const SignupForm: React.FC = () => {
           {...register("organisationName", { required: true })}
           className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
         />
+        {errors.organisationName && (
+          <span className="text-red-500">Organisation Name is required</span>
+        )}
       </div>
       <div>
         <label className="block text-gray-700 font-semibold mb-2">
@@ -67,6 +70,9 @@ const SignupForm: React.FC = () => {
           {...register("userName", { required: true })}
           className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
         />
+        {errors.userName && (
+          <span className="text-red-500">Name is required</span>
+        )}
       </div>
       <div>
         <label className="block text-gray-700 font-semibold mb-2">Email:</label>
@@ -76,6 +82,9 @@ const SignupForm: React.FC = () => {
           {...register("userEmail", { required: true })}
           className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
         />
+        {errors.userEmail && (
+          <span className="text-red-500">Email is required</span>
+        )}
       </div>
       <div>
         <label className="block text-gray-700 font-semibold mb-2">
@@ -87,6 +96,9 @@ const SignupForm: React.FC = () => {
           {...register("userPassword", { required: true })}
           className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
         />
+        {errors.userPassword && (
+          <span className="text-red-500">Password is required</span>
+        )}
       </div>
       <button
         type="submit"
