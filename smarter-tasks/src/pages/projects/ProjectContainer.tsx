@@ -9,10 +9,10 @@ const ProjectContainer = () => {
     const projectDispatch = useProjectsDispatch();
     const memberDispatch = useMembersDispatch();
     useEffect(() => {
-        fetchProjects(projectDispatch);
-        fetchMembers(memberDispatch);
+      fetchProjects(projectDispatch);
+      fetchMembers(memberDispatch);
     }, [projectDispatch, memberDispatch]);
     return <Outlet />;
-};
-
-export default ProjectContainer;
+  };
+  
+  export default ProjectContainer;
