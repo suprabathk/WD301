@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useTasksDispatch, useTasksState } from "../../context/task/context";
@@ -8,11 +8,11 @@ import CheckIcon from "@heroicons/react/24/outline/CheckIcon";
 import { useMembersState } from "../../context/members/context";
 import { useProjectsState } from "../../context/projects/context";
 import { TaskDetailsPayload } from "../../context/task/types";
-
+import Comments from "./Comments";
 
 type TaskFormUpdatePayload = TaskDetailsPayload & {
-    selectedPerson: string;
-  };
+  selectedPerson: string;
+};
 
 // Helper function to format the date to YYYY-MM-DD format
 const formatDateForPicker = (isoDate: string) => {
@@ -199,6 +199,7 @@ const TaskDetails = () => {
                         Cancel
                       </button>
                     </form>
+                    <Comments />
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
