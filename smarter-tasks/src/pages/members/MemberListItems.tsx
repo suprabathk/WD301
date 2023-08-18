@@ -9,10 +9,8 @@ import { deleteMember } from "../../context/members/actions";
 export default function MemberListItems() {
   const dispatchMembers = useMembersDispatch();
   let state: any = useMembersState();
-  // console.log({ state });
 
   const { members, isLoading, isError, errorMessage } = state;
-  console.log(members);
 
   if (members.length === 0 && isLoading) {
     return <span>Loading...</span>;
@@ -27,7 +25,7 @@ export default function MemberListItems() {
       {members.map((member: any) => (
         <div
           key={member.id}
-          className="supense-loading member block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+          className="suspense-loading member block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
         >
           <div className="flex justify-between items-center">
             <h5 className="mb-1 text-xl font-medium tracking-tight text-gray-900 dark:text-white">

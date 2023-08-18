@@ -28,7 +28,7 @@ const ProjectDetails = () => {
   }
   return (
     <>
-      <div className="supense-loading flex justify-between">
+      <div className="suspense-loading flex justify-between">
         <h2 className="text-2xl font-medium tracking-tight text-slate-700">
           {selectedProject.name}
         </h2>
