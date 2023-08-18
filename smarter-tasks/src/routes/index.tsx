@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import AccountLayout from "../layouts/account";
-import ProtectedRoutes from "./ProtectedRoutes";
+import ProtectedRoute from "./ProtectedRoute";
 import Signin from "../pages/signin";
 import Signup from "../pages/signup";
 import Projects from "../pages/projects";
@@ -16,23 +16,23 @@ const router = createBrowserRouter([
   { path: "/", element: <Navigate to="/account/projects" replace /> },
   {
     path: "/signin",
-    element: <Signin />
+    element: <Signin />,
   },
   {
     path: "/signup",
-    element: <Signup />
+    element: <Signup />,
   },
   {
     path: "/logout",
-    element: <Logout />
+    element: <Logout />,
   },
   // Protected Routes
   {
     path: "account",
     element: (
-      <ProtectedRoutes>
+      <ProtectedRoute>
         <AccountLayout />
-      </ProtectedRoutes>
+      </ProtectedRoute>
     ),
     children: [
       { index: true, element: <Navigate to="/account/projects" replace /> },
@@ -68,13 +68,13 @@ const router = createBrowserRouter([
       },
       {
         path: "members",
-        element: (<Members />)
+        element: <Members />,
       },
     ],
   },
   {
     path: "*",
-    element: <Notfound />
+    element: <Notfound />,
   },
 ]);
 

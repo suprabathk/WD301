@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
 
-export default function ProtectedRoutes({
+export default function ProtectedRoute({
   children,
 }: {
   children: JSX.Element;
